@@ -1,6 +1,6 @@
 # HuggingFace Daily Papers Abstracts Extractor
 
-This project automates the process of downloading, summarizing, and converting daily papers from Hugging Face into easily readable formats.
+This project automates the process of downloading, summarizing, and converting daily papers from Hugging Face into easily readable formats. A daily email is sent to the user with the abstracts of the papers. The user can set the sender email, receiver email, and password of the sender email to receive the daily papers.
 
 ![Sample output of abstract extraction process](img/daily_hf_papers_abstracts_sample_output.png)
 
