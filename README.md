@@ -36,7 +36,10 @@ Please follow the steps below to extract daily papers from Hugging Face and send
 # Set sender email, receiver email, and password of your sender email
 python src/daily_papers_abstract_extractor.py --sender_email $sender_email --receiver_email $receiver_email --password $password
 ```
-If your email is not Outlook, you can change the email server and the port number in the line of `server = smtplib.SMTP('smtp.office365.com', 587)` (in file `src/daily_papers_abstract_extractor.py`). For example, you can use `smtp.gmail.com` and port `587` for gmail.
+
+- If your email is not Outlook, you can change the email server and the port number in the line of `server = smtplib.SMTP('smtp.office365.com', 587)` (in file `src/daily_papers_abstract_extractor.py`). For example, you can use `smtp.gmail.com` and port `587` for gmail.
+
+- You can also set the time to send the email by changing the `schedule.every().day.at("15:00:00").do(process_and_send_email)` line in the `src/daily_papers_abstract_extractor.py` file. The default time is set to 15:00:00 every day.
 
 
 ## Notes
