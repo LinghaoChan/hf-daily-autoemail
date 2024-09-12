@@ -6,65 +6,48 @@ This project automates the process of downloading, summarizing, and converting d
 
 ## Features
 
+- Automate the process of sending daily papers to your email
 - Download daily papers from Hugging Face API
 - Extract abstracts and generate markdown summaries
 - Handle empty files and weekends/holidays
 - Avoid reprocessing existing files
 
-## Project Structure
-
-```
-hf_daily_papers/
-│
-├── data/
-│   ├── input/  # Downloaded JSON files
-│   ├── output/ # Generated markdown files
-│
-├── src/
-│   ├── download_daily_papers.py
-│   ├── daily_papers_abstract_extractor.py
-│
-└── README.md
-```
 
 ## Installation
 
 1. Clone this repository:
 
-   ```
-   git clone https://github.com/elsatch/daily_hf_papers_abstracts.git
-   cd hf_daily_papers
+   ```bash
+   git clone https://github.com/LinghaoChan/hf-daily-autoemail.git
+   cd hf-daily-autoemail
    ```
 
 2. Install the required dependencies:
 
-   ```
+   ```bash
    pip install requests
+   pip install schedule
    ```
 
 ## Usage
 
-1. Download daily papers:
-   ```
-   python src/download_daily_papers.py [YYYYMMDD]
-   ```
-   If no date is provided, it will download papers for the current date.
-
-2. Process JSON files and generate markdown summaries:
-   ```
-   python src/daily_papers_abstract_extractor.py
-   ```
+Please follow the steps below to extract daily papers from Hugging Face and send them to your email:
+```bash
+# Set sender email, receiver email, and password of your sender email
+python src/daily_papers_abstract_extractor.py --sender_email $sender_email --receiver_email $receiver_email --password $password
+```
+If your email is not Outlook, you can change the email server and the port number in the line of `server = smtplib.SMTP('smtp.office365.com', 587)` (in file `src/daily_papers_abstract_extractor.py`). For example, you can use `smtp.gmail.com` and port `587` for gmail.
 
 
 ## Notes
 
-- The scripts handle empty files that may occur during weekends or holidays.
+- The scripts handle empty files that may occur during weekends or holidays. And they will not send emails in these cases.
 - Existing processed files are not overwritten to avoid unnecessary reprocessing.
-- You can run these scripts daily to keep up with the latest papers.
+- You can run the script on a server or a local machine to receive daily papers in your email.
 
 ## Contributing
 
-Contributions are welcome! Please feel free to submit a Pull Request.
+Contributions are welcome! Please feel free to submit a Pull Request. The code is based on [this](https://github.com/elsatch/daily_hf_papers_abstracts).
 
 ## License
 

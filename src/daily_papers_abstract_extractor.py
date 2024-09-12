@@ -62,12 +62,13 @@ def process_daily_papers(input_file):
     markdown_output = json_to_markdown(data)
     
     if markdown_output is None:
-        print(f"Warning: {input_file} is empty. No markdown file will be created.")
-        delete = input("Do you want to delete this empty file? (Y/N): ").strip().lower()
+        msg = f"Warning: {input_file} is empty. No markdown file will be created."
+        print(msg)
+        delete = 'y'
         if delete == 'y':
             os.remove(input_file)
             print(f"Deleted {input_file}")
-        return
+        return msg
 
     # Get the output filename based on the input filename
     output_filename = get_output_filename(os.path.basename(input_file))
@@ -141,7 +142,10 @@ def process_and_send_email():
     print(f"=====================Running {today} Hugging Face Daily Papers Script=====================")
     os.system(f"python src/download_daily_papers.py {today}")  # Run the download script
     json_file = f"./data/input/daily_papers_{today}.json"  # Path to the JSON file
-    process_daily_papers(json_file)  # Process the downloaded JSON file
+    msg = process_daily_papers(json_file)  # Process the downloaded JSON file
+    if msg is not None:
+        if "Warning" in msg:
+            return
     markdown_file = f"./data/output/daily_papers_summary_{today}.md"  # Path to the markdown summary
     send_markdown_email(markdown_file)  # Send the email with the markdown content
 
