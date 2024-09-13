@@ -44,7 +44,7 @@ def json_to_markdown(json_data):
         markdown_content += f"**Authors:** {authors}\n\n"
         markdown_content += f"[Open in Hugging Face]({hf_link}) | [Open PDF]({arxiv_link})\n\n"
         markdown_content += f"{summary}\n\n"
-        markdown_content += f"![image](img)"
+        markdown_content += f"![image](img)\n\n"
     
     return markdown_content
 
